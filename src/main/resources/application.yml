@@ -1,14 +1,20 @@
 spring:
   profiles:
-    active: local
+    active: dev
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    properties:
-      hibernate:
-        format_sql: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    properties:
+#      hibernate:
+#        format_sql: true
+
+movie:
+  openApi:
+    trending:
+      uri: https://api.themoviedb.org/3
+    apiKey: a5355071c234**b96166b4f**48b52d**2ee19
 
 --- # local
 
@@ -29,14 +35,15 @@ spring:
       path: /h2-console
   datasource:
     hikari:
-      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      #      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      jdbc-url: jdbc:h2:mem:testdb
       driver-class-name: org.h2.Driver
       username: sa
       password:
 
   batch:
     job:
-      names: ${job.name:NONE}
+      #      names: ${job.name:NONE}
       enabled: false
     jdbc:
       initialize-schema: embedded
@@ -59,16 +66,20 @@ spring:
     activate:
       on-profile: dev
 
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/testdb
+
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql:1237.0.0.1:3306/watermelon
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/watermelon
       username: testadmin
       password: password
 
   batch:
     job:
-      names: ${job.name:NONE}
+      #      names: ${job.name:NONE}
       enabled: false
     jdbc:
       initialize-schema: always
