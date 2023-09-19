@@ -17,7 +17,7 @@ public class WebServerController {
         return webClient.get()
                         .uri("https://shoppingtip.cafe24api.com/api/v2/admin/store?shop_no=1")
                         .accept(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer s1yhtGChBRTrH2aIEGNNjB")
+                        .header("Authorization", "Bearer s1*yhtGCh&BRTrH*2aI*EGNNjB")
                         .retrieve()
                         .bodyToMono(String.class);
     }
